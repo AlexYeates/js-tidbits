@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Prototype Example</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+  <script>
+    // Create a Person constructor function to contain properties
+    function Person(name, age, gender) {
+      this.name = name
+      this.age = age
+      this.gender = gender
+      this.bio = `Hi, my name is ${this.name}. I am ${this.age} years old.`
+    }
+
+    // Add methods to Person's prototype so they can be inherited (and not redefined each time the Person constructor is called)
+    Person.prototype.talk = function (string) {
+      console.log(`${this.name}: ${string}`)
+    }
+
+    // Create a Teacher constructor that will call Person to inherit some properties, as well as add its own
+    function Teacher(name, age, gender, subject) {
+      Person.call(this, name, age, gender)
+      this.subject = subject
+    }
+
+    // Set Teacher's prototype to inherit from Person (otherwise it just points to its own constructor function)
+    Teacher.prototype = Object.create(Person.prototype);
+
+    // Reset the contructor to reference Teacher (otherwise it just points to Person)
+    Teacher.prototype.constructor = Teacher;
+
+    // Give Teacher's Prototype a new method 
+    Teacher.prototype.greeting = function () {
+      console.log(`${this.name}: Hello, my name is ` + (this.gender === 'm' || 'male' || 'Male' ? 'Mr ' : 'Ms ' ) + `${this.name} . I am ${this.age} years old and I teach ${this.subject}.`)
+    }
+
+    // Create a Teacher and test
+    const martin = new Teacher('Martin', 35, 'male', 'Biology')
+    martin.talk('Come in!')
+    martin.greeting()
+
+  </script>
+
+</body>
+
+</html>

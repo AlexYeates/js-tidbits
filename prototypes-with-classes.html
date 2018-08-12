@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Prototypes with Classes</title>
+</head>
+
+<body>
+
+  <script>
+    
+    // Classes are just syntatic sugar and are converted into regular prototypal inheritance models
+    class Person {
+      // The constructor function acts as you would expect a constructor to be, and contains shared properties of the Objects
+      constructor(name, age, gender) {
+        this.name = name
+        this.age = age
+        this.gender = gender
+      }
+
+      // Any methods declared beneath the constructor are assigned to the Object's prototype e.g. Person.prototype.talk = function talk() {...}
+      talk(string) {
+        console.log(`${this.name}: ${string}`)
+      }
+    }
+
+    // The extends keyword is a substitute for calling the Object you are creating a new instance of. It means you can inherit its prototype chain (it also handles having to declare constructor and prototype references)
+    class Teacher extends Person {
+      constructor(name, age, gender, subject) {
+        // super is bascially call() and declares what properties to get from the parent prototype
+        super(name, age, gender)
+        this.subject = subject
+      }
+
+      greeting() {
+        console.log(`${this.name}: Welcome to the school. I am ` + (this.gender === 'male' || 'Male' || 'm' ? 'Mr ' : 'Ms ') + `${this.name}. I am ${this.age} years old and I teach ${this.subject}.`)
+      }
+    }
+
+    class Student extends Person {
+      constructor(name, age, gender, interests) {
+        super(name, age, gender)
+        this.interests = interests
+      }
+      
+      greeting() {
+        console.log(`${this.name}: Yo, my name is ${this.name} and I am ${this.age} years old. I like ${this.interests}.`);
+      }
+    }
+
+    const marvin = new Student('marvin', 28, 'male', 'Maths')
+    marvin.talk('hi')
+    marvin.greeting()
+
+  </script>
+</body>
+
+</html>
