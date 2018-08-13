@@ -1,3 +1,19 @@
+// Take a number and return it as a string in Expanded Form
+const expandedForm = num => {  
+  return num
+  .toString()
+  .split("")
+  .reverse()
+  .map((v, i, a) => {
+    return a[i] = v + '0'.repeat(i)
+  })
+  .reverse()
+  .filter(e => {
+    return e.charAt(0) !== '0' 
+  })
+  .join(' + ')
+}
+
 // Implement the function unique_in_order which takes as argument a sequence and returns a list of items without any elements with the same value next to each other and preserving the original order of elements.
 const uniqueInOrder = (iterable) => {
   if (!Array.isArray(iterable)) {
