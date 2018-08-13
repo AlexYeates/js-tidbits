@@ -1,4 +1,12 @@
-
+//Simple, given a string of words, return the length of the shortest word(s). String will never be empty and you do not need to account for different data types.
+const findShort = s => {
+  let x = s
+    .split(" ")
+    .map((v, i, a) => {
+      return a[i].length
+    })
+  return Math.min(...x)
+}
 
 // You live in the city of Cartesia where all roads are laid out in a perfect grid. You arrived ten minutes too early to an appointment, so you decided to take the opportunity to go for a short walk. The city provides its citizens with a Walk Generating App on their phones -- everytime you press the button it sends you an array of one-letter strings representing directions to walk (eg. ['n', 's', 'w', 'e']). You always walk only a single block in a direction and you know it takes you one minute to traverse one city block, so create a function that will return true if the walk the app gives you will take you exactly ten minutes (you don't want to be early or late!) and will, of course, return you to your starting point. Return false otherwise.
 
@@ -7,7 +15,10 @@ const isValidWalk = walk => {
   if (walk.length !== 10) {
     return false
   } else {
-    let n = 0, s = 0, w = 0, e = 0
+    let n = 0,
+      s = 0,
+      w = 0,
+      e = 0
     walk.forEach(el => {
       switch (el) {
         case 'n':
@@ -35,19 +46,19 @@ const isValidWalk = walk => {
 }
 
 // Take a number and return it as a string in Expanded Form
-const expandedForm = num => {  
+const expandedForm = num => {
   return num
-  .toString()
-  .split("")
-  .reverse()
-  .map((v, i, a) => {
-    return a[i] = v + '0'.repeat(i)
-  })
-  .reverse()
-  .filter(e => {
-    return e.charAt(0) !== '0' 
-  })
-  .join(' + ')
+    .toString()
+    .split("")
+    .reverse()
+    .map((v, i, a) => {
+      return a[i] = v + '0'.repeat(i)
+    })
+    .reverse()
+    .filter(e => {
+      return e.charAt(0) !== '0'
+    })
+    .join(' + ')
 }
 
 // Implement the function unique_in_order which takes as argument a sequence and returns a list of items without any elements with the same value next to each other and preserving the original order of elements.
