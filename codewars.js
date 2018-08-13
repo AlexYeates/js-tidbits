@@ -1,3 +1,14 @@
+// Take 2 strings s1 and s2 including only letters from a to z. Return a new sorted string, the longest possible, containing distinct letters, each taken only once - coming from s1 or s2. #Examples: ``` a = "xyaabbbccccdefww" b = "xxxxyyyyabklmopq" longest(a, b) -> "abcdefklmopqwxy" a = "abcdefghijklmnopqrstuvwxyz" longest(a, a) -> "abcdefghijklmnopqrstuvwxyz" 
+const longest = (s1, s2) => {
+  return (s1 + s2)
+    .split("")
+    .filter((v, i, a) => {
+      return a.indexOf(v) == i
+    })
+    .sort()
+    .join("")
+}
+
 //Simple, given a string of words, return the length of the shortest word(s). String will never be empty and you do not need to account for different data types.
 const findShort = s => {
   let x = s
