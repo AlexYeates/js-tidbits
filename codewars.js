@@ -1,3 +1,12 @@
+// Given a string of words, you need to find the highest scoring word. Each letter of a word scores points according to it's position in the alphabet: a = 1, b = 2, c = 3 etc. You need to return the highest scoring word as a string. If two words score the same, return the word that appears earliest in the original string. All letters will be lowercase and all inputs will be valid.
+const high = x => {
+  return x.split(" ").map(e => e.split(""))
+}
+
+console.log(high('man i need a taxi up to ubud'))
+console.log(high('what time are we climbing up the volcano'))
+console.log(high('take me to semynak'))
+
 // Given: an array containing hashes of names. Return: a string formatted as a list of names separated by commas except for the last two names, which should be separated by an ampersand.
 const list = names => {
   let x = names.map(e => e.name)
