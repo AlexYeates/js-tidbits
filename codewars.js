@@ -1,3 +1,19 @@
+// Given: an array containing hashes of names. Return: a string formatted as a list of names separated by commas except for the last two names, which should be separated by an ampersand.
+const list = names => {
+  let x = names.map(e => e.name)
+  if (x.length > 1) {
+    return x.slice(0, x.length - 1).join(", ") + ' & ' + x.pop()
+  } else {
+    return x.join("")
+  }
+}
+
+// In this little assignment you are given a string of space separated numbers, and have to return the highest and lowest number.
+const highAndLow = numbers => {
+  numbers = numbers.split(" ").map(v => parseInt(v))
+  return Math.max(...numbers) + ' ' + Math.min(...numbers) 
+};
+
 // Take 2 strings s1 and s2 including only letters from a to z. Return a new sorted string, the longest possible, containing distinct letters, each taken only once - coming from s1 or s2. #Examples: ``` a = "xyaabbbccccdefww" b = "xxxxyyyyabklmopq" longest(a, b) -> "abcdefklmopqwxy" a = "abcdefghijklmnopqrstuvwxyz" longest(a, a) -> "abcdefghijklmnopqrstuvwxyz" 
 const longest = (s1, s2) => {
   return (s1 + s2)
